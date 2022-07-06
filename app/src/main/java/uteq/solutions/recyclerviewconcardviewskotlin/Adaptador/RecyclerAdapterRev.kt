@@ -1,7 +1,7 @@
-package uteq.solutions.recyclerviewconcardviewskotlin
+package uteq.solutions.recyclerviewconcardviewskotlin.Adaptador
 
+import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +11,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
-import android.content.Context
+import uteq.solutions.recyclerviewconcardviewskotlin.Actividad.VolumenActivity
+import uteq.solutions.recyclerviewconcardviewskotlin.Modelo.Revista
+import uteq.solutions.recyclerviewconcardviewskotlin.R
 
+class RecyclerAdapterRev (val revList: ArrayList<Revista>, contexto: Context) : RecyclerView.Adapter<RecyclerAdapterRev.ViewHolder>() {
 
-class RecyclerAdapterVol (val volList: ArrayList<Volumen>) : RecyclerView.Adapter<RecyclerAdapterVol.ViewHolder>() {
-
-//    val context:Context = TODO()
+    val context:Context = contexto
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(viewGroup.context)
@@ -25,12 +26,12 @@ class RecyclerAdapterVol (val volList: ArrayList<Volumen>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.txtNombre.text = volList[position].title
-        Picasso.get().load(volList[position].cover).into(holder.itemImage);
+        holder.txtNombre.text = revList[position].name
+        Picasso.get().load(revList[position].portada).into(holder.itemImage);
     }
 
     override fun getItemCount(): Int {
-        return volList.size
+        return revList.size
     }
 
 
@@ -45,14 +46,13 @@ class RecyclerAdapterVol (val volList: ArrayList<Volumen>) : RecyclerView.Adapte
 
             itemView.setOnClickListener { v: View  ->
                 var position: Int = getAdapterPosition()
+                var idRevista:String = revList[position].journal_id
 
+                val intent= Intent(context, VolumenActivity::class.java)
+                intent.putExtra("idRevista", position)
+                ContextCompat.startActivity(context,intent, null)
 
-//                val bundle = Bundle()
-//                val i= Intent(context,VolumenActivity::class.java)
-//                ContextCompat.startActivity(context,i, null)
-//                bundle.putString("posicion", position.toString())
-
-                Snackbar.make(v, "Item Selecccionado $position",
+                Snackbar.make(v, "Item Selecccionado ${revList[position].name}",
                     Snackbar.LENGTH_LONG).setAction("Actción", null).show()
 
 

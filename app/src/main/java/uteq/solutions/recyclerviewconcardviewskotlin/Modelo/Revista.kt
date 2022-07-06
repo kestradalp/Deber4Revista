@@ -1,4 +1,4 @@
-package uteq.solutions.recyclerviewconcardviewskotlin
+package uteq.solutions.recyclerviewconcardviewskotlin.Modelo
 
 import org.json.JSONArray
 import org.json.JSONException

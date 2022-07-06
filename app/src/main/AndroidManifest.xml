@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecyclerViewConCardviewsKotlin">
         <activity
-            android:name=".VolumenActivity"
+            android:name=".Actividad.VolumenActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Actividad.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
